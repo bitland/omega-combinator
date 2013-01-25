@@ -32,9 +32,9 @@ file PCAP => HTML do
 
   Thread.new do
     Rack::Server.start(
-    :app       => Rack::Directory.new('.'),
-    :Port      => PORT,
-    :Host      => 'localhost'
+      :app       => Rack::Directory.new('.'),
+      :Port      => PORT,
+      :Host      => 'localhost'
     )
   end
     
@@ -47,9 +47,9 @@ file PCAP => HTML do
     
   puts ">>> Requesting #{HTML} ..."
   Net::HTTP.get(URI::HTTP.build(
-  :host => 'localhost',
-  :port => PORT,
-  :path => "/#{HTML}"
+    :host => 'localhost',
+    :port => PORT,
+    :path => "/#{HTML}"
   ))
 
   puts ">>> Stopping tcpdump ..."
