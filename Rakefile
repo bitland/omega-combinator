@@ -25,8 +25,11 @@ HTML = 'file.html'
 PCAP = HTML.chomp('.html') + '.pcap'
 
 desc "Creates a pcap for #{HTML}"
-
 file PCAP => HTML do
+  unless Process.uid == 0
+    abort "Please run with sudo. `sudo rake #{PCAP}`"
+  end
+
   Thread.new do
     Rack::Server.start(
     :app       => Rack::Directory.new('.'),
